@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import sys
 import requests
 import argparse
 try:
@@ -17,9 +18,11 @@ def main(args):
     elif r.status_code == 404:
         cprint("NO", "red")
         print("{} is NOT typed".format(args.module))
+        sys.exit(1)
     else:
         cprint("UGH", "yellow")
         print("Hmmm... there was an issue: {}".format(url))
+        sys.exit(1)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Check if DefinitelyTyped has typings for an npm module')
